@@ -67,5 +67,9 @@ public class BlueprintsServices {
         return bpp.getBlueprintByAuthor(author);
     }
     
+    public void UpdateBlueprint(Blueprint bp) throws BlueprintPersistenceException {
+        bpp.UpdatePoints(bp);
+    }
+    
 
 }

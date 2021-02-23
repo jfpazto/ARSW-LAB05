@@ -104,5 +104,15 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
         return filtro.filterBlueprintSet(authorBlueprints);
 	}
 
+	@Override
+	public void UpdatePoints(Blueprint bp) throws BlueprintPersistenceException {
+		if (!blueprints.containsKey(new Tuple<>(bp.getAuthor(), bp.getName()))) {
+			throw new BlueprintPersistenceException("The given blueprint don't exists: " + bp);
+		} else {
+			blueprints.put(new Tuple<>(bp.getAuthor(), bp.getName()), bp);
+		}
+	}
+	
+
 
 }
