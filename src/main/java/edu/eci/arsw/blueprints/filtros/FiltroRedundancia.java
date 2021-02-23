@@ -2,13 +2,14 @@ package edu.eci.arsw.blueprints.filtros;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
 import edu.eci.arsw.blueprints.model.Blueprint;
 import edu.eci.arsw.blueprints.model.Point;
 
-@Service
+/*@Service*/
 public class FiltroRedundancia implements IFiltros{
 	@Override
 	public Blueprint filtrar(Blueprint bp)
@@ -81,4 +82,12 @@ public class FiltroRedundancia implements IFiltros{
         
 		return finala;
 	}
+	
+    @Override
+    public Set<Blueprint> filterBlueprintSet(Set<Blueprint> bp) {
+        for(Blueprint blueP: bp){
+            blueP = filtrar(blueP);
+        }
+        return bp;
+    }
 }

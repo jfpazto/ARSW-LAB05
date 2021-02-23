@@ -1,6 +1,7 @@
 package edu.eci.arsw.blueprints.filtros;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -24,5 +25,13 @@ public class FiltroSubmuestreo implements IFiltros{
 	Blueprint finala = new Blueprint(bp.getAuthor(), bp.getName(), nlista);
 	return finala;
     } 
+    
+    @Override
+    public Set<Blueprint> filterBlueprintSet(Set<Blueprint> bp) {
+        for (Blueprint blueP: bp){
+            blueP = filtrar(blueP);
+        }
+        return bp;
+    }
 
 }

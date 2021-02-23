@@ -7,12 +7,15 @@ package edu.eci.arsw.blueprints.persistence;
 
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
+
 import edu.eci.arsw.blueprints.model.Blueprint;
 
 /**
  *
  * @author hcadavid
  */
+@Service
 public interface BlueprintsPersistence {
 
 	/**
@@ -36,5 +39,9 @@ public interface BlueprintsPersistence {
 	public Set<Blueprint> getSetBlueSprints(String author) throws BlueprintNotFoundException;
 
 	public Set<Blueprint> getAll() throws BlueprintNotFoundException;
+	
+	public Set<Blueprint> getBlueprintByAuthor(String auth);
+	
+	//public Set<Blueprint> getBlueprintsByAuthor(String author) throws BlueprintNotFoundException;
 
 }

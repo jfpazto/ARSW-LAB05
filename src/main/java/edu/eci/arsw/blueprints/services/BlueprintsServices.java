@@ -28,13 +28,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class BlueprintsServices {
-
+	@Autowired
 	BlueprintsPersistence bpp = null;
 
-	@Autowired
-	IFiltros filtro=null;//comentar esto para probar la funcionalidad parte3
+
 	
-	@Autowired
 	public BlueprintsServices(BlueprintsPersistence bpp) {
 		this.bpp = bpp;
 	}
@@ -44,12 +42,9 @@ public class BlueprintsServices {
 		bpp.saveBlueprint(bp);
 	}
 
-	public Set<Blueprint> getAllBlueprints() throws BlueprintNotFoundException {
-		Set<Blueprint> setresulting = bpp.getAll();
-		if (setresulting.size() < 1)
-			throw new BlueprintNotFoundException("doesn't exists blueprint");
-		return setresulting;
-	}
+    public Set<Blueprint> getAllBlueprints() throws BlueprintNotFoundException {
+        return bpp.getAll();
+    }
 
 	/**
 	 * 
@@ -58,12 +53,9 @@ public class BlueprintsServices {
 	 * @return the blueprint of the given name created by the given author
 	 * @throws BlueprintNotFoundException if there is no such blueprint
 	 */
-	public Blueprint getBlueprint(String author, String name) throws BlueprintNotFoundException {
-		Blueprint blueprint = bpp.getBlueprint(author, name);
-		if (blueprint == null)
-			throw new BlueprintNotFoundException("doesn't exists blueprint");
-		return blueprint;
-	}
+    public Blueprint getBlueprint(String author,String name) throws BlueprintNotFoundException{
+        return bpp.getBlueprint(author, name);
+    }
 
 	/**
 	 * 
@@ -71,11 +63,9 @@ public class BlueprintsServices {
 	 * @return all the blueprints of the given author
 	 * @throws BlueprintNotFoundException if the given author doesn't exist
 	 */
-	public Set<Blueprint> getBlueprintsByAuthor(String author) throws BlueprintNotFoundException {
-		HashSet<Blueprint> blueprints = (HashSet<Blueprint>) bpp.getSetBlueSprints(author);
-		if (blueprints.size() < 1)
-			throw new BlueprintNotFoundException("doesn't exists blueprint");
-		return blueprints;
-	}
+    public Set<Blueprint> getBlueprintsByAuthor(String author) throws BlueprintNotFoundException {
+        return bpp.getBlueprintByAuthor(author);
+    }
+    
 
 }

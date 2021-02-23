@@ -10,11 +10,14 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import edu.eci.arsw.blueprints.model.Blueprint;
 import edu.eci.arsw.blueprints.services.BlueprintsServices;
 
 /**
@@ -27,7 +30,7 @@ public class BlueprintAPIController {
 	@Autowired
 	BlueprintsServices bps;
 
-	@RequestMapping(method = RequestMethod.GET)
+	/*@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<?> manejadorBlueprints() {
 
 		try {
@@ -37,6 +40,33 @@ public class BlueprintAPIController {
 			Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
 			return new ResponseEntity<>("Error bla bla bla", HttpStatus.NOT_FOUND);
 		}
+	}*/
+	
+	/*@RequestMapping(method = RequestMethod.GET, path="{author}")
+	public ResponseEntity<?> manejadorBlueprintsAutor(@PathVariable("author") String nombre) {
+
+		try {
+			Set<Blueprint> datos=bps.getBlueprintsByAuthor(nombre);
+			// obtener datos que se enviarán a través del API
+			return new ResponseEntity<>(datos, HttpStatus.ACCEPTED);
+		} catch (Exception ex) {
+			Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
+			return new ResponseEntity<>("Error 404", HttpStatus.NOT_FOUND);
+		}
+	}*/
+	
+	@RequestMapping(method = RequestMethod.GET, path="{author}/{bpname}")
+	public ResponseEntity<?> manejadorBlueprintsAutor(@PathVariable("author") String nombre,@PathVariable("bpname") String bpname) {
+
+		try {
+			Blueprint datos=bps.getBlueprint(nombre, bpname);
+			// obtener datos que se enviarán a través del API
+			return new ResponseEntity<>(datos, HttpStatus.ACCEPTED);
+		} catch (Exception ex) {
+			Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
+			return new ResponseEntity<>("Error 404", HttpStatus.NOT_FOUND);
+		}
 	}
 
 }
+
