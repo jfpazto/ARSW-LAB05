@@ -1,0 +1,12 @@
+- Condiciones de Carrera
+
+	* Es posible registrar 2 autores al tiempo, si se registra al mismo tiempo los planos
+	* Se puede añadir un autor mientras un usuario consulta los planos, esto puede lanzar excepción por modificación concurrente de la lista de cinemas.
+
+	* Se puede actualizar una autor mientras un usuario consulta los autores, esto puede lanzar excepción por modificación concurrente de la lista de blueprints.
+
+- Solucion
+	* Colocar el tipo de dato de blueprints como ConcurrentHashMap para garantizar que no se presente modificación concurrente
+	
+
+	

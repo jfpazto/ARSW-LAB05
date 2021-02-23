@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
 
-	private final Map<Tuple<String, String>, Blueprint> blueprints = new HashMap<>();
+	private final ConcurrentHashMap<Tuple<String, String>, Blueprint> blueprints = new ConcurrentHashMap<>();
     @Autowired
     private IFiltros filtro;
 
