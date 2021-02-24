@@ -31,7 +31,7 @@ public class BlueprintAPIController {
 	@Autowired
 	BlueprintsServices bps;
 
-	/*@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<?> manejadorBlueprints() {
 
 		try {
@@ -41,10 +41,10 @@ public class BlueprintAPIController {
 			Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
 			return new ResponseEntity<>("Error bla bla bla", HttpStatus.NOT_FOUND);
 		}
-	}*/
+	}
 	
-	/*@RequestMapping(method = RequestMethod.GET, path="{author}")
-	public ResponseEntity<?> manejadorBlueprintsAutor(@PathVariable("author") String nombre) {
+	@RequestMapping(method = RequestMethod.GET, path="{author}")
+	public ResponseEntity<?> manejadorBlueprints_soloAutor(@PathVariable("author") String nombre) {
 
 		try {
 			Set<Blueprint> datos=bps.getBlueprintsByAuthor(nombre);
@@ -54,7 +54,7 @@ public class BlueprintAPIController {
 			Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
 			return new ResponseEntity<>("Error 404", HttpStatus.NOT_FOUND);
 		}
-	}*/
+	}
 	
 	@RequestMapping(method = RequestMethod.GET, path="{author}/{bpname}")
 	public ResponseEntity<?> manejadorBlueprintsAutor(@PathVariable("author") String nombre,@PathVariable("bpname") String bpname) {
